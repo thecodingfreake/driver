@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Details</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            /* background-color: #e8e2e2; */
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px; */
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            background-color: #e8e2e2;
+
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #495059;
+            color: #fff;
+        
+        }
+
+        .but {
+            background-color: #273b43;
+            color: #fff;
+            font-weight: 700;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            border-radius: 20%;
+            float: right;
+            margin:2% 0;
+            margin-right:2%;
+        }
+        .add{
+        border-radius: 6px;background-color: #273b43;color:white;
+        }
+        .error-message {
+    color: rgb(21, 9, 66);
+    text-align: center;
+    font-weight: bold;
+    font-size:18px;
+    margin-top: 5%;
+}
+
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 8px; /* Reduce font size for smaller screens */
+                width:100%;
+                margin-right: 10px;
+            }
+            th, td {
+                padding: 4px;
+                
+            }
+            .container{
+                margin-left: -5%;
+            }
+            
+            .but{
+                
+                padding: 4px 8px; 
+                margin: 2% 0;
+                margin-right: 0; 
+                font-size: 8px; 
+                margin-left: 2%;
+                }
+                .add{
+                    border-radius: 4px;
+                    background-color: #273b43;
+                    color:white;
+                    font-size: 4px;
+
+                }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Driver Details</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>S No</th>
+                    <th>Corporate Name</th>
+                    <th>Location</th>
+                    <th>Gatepass No</th>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Pick Up Place</th>
+                    <th>Drop Place</th>
+                    <th>Vehicle No</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if data %}
+                {% for i in data %}
+                <tr>
+                    <td>{{i.driverid}}</td>
+                    <td>{{i.corporatename}}</td>
+                    <td>{{i.location}}</td>
+                    {% if i.update %}
+                    <td>{{i.gatepassno}}</td>
+                    {% else %}
+                    <td><form action='additions' method='post'>
+                        {% csrf_token %}
+                        <button  value='{{i.id}}' name='ided'class="add" > Add Gatepass</button>
+                    </form>
+                    </td>
+                    {% endif %}
+                    <td>{{i.date}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.pickupplace}}</td>
+                    <td>{{i.dropplace}}</td>
+                    <td>{{i.vehicleno}}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+<p class="error-message">Sorry no data available</p>
+{% endif %}                
+<a href='/addition'><button class="but">Add work</button></a>
+            </tbody>
+        </table>
+    </div>
+   
+</body>
+</html>

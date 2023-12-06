@@ -1,0 +1,90 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Input Form</title>
+    <style>
+        
+
+        
+        body {
+            font-family: Arial, sans-serif;
+          
+            background: #fafafb;
+
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #eeeff0;           
+            border-radius: 10px;
+  box-shadow: -3px -3px 7px #ffffff73,
+               2px 2px 5px rgba(94,104,121,0.288);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="file"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        select{
+            width:94%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #273b43;
+            color: #fff;
+            font-weight: 700;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            border-radius: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader"></div>
+    <div class="container">
+        <h1>Driver Input Form</h1>
+        <form id="display" action="/additions2" method="post" enctype='multipart/form-data'>
+           {% csrf_token %}
+
+            <label for="gatepass_no">Gatepass No:</label>
+            <input type="text" id="gatepass_no" name="gatepassno" required>
+
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    
+</body>
+</html>

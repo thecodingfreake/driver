@@ -1,0 +1,132 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Input Form</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+          
+            background: #fafafb;
+
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #eeeff0;           
+            border-radius: 10px;
+  box-shadow: -3px -3px 7px #ffffff73,
+               2px 2px 5px rgba(94,104,121,0.288);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="file"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #273b43;
+            color: #fff;
+            font-weight: 700;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            border-radius: 20%;
+        }
+        select{
+            width:94%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Driver Input Form</h1>
+        <form id="display" action="/addition2" method="post" enctype='multipart/form-data'>
+           {% csrf_token %}
+            <label for="driver_id">Driver Id:</label>
+            <input type="text" id="driver_id" name="driver_id" value='{{user}}' readonly>
+
+            <label for="corporate">Corporate Name:</label>
+            <select id='corporate' name="corporate">
+                {% for i in corp %}
+                <option value='{{i.name}}'>{{i.name}}</option>
+                {% endfor %}
+            </select>
+            <label for="location">Location:</label>
+            <select id="location"  name="location" required>
+                {% for i in corp1 %}
+                <option value='{{i.places}}'>{{i.places}}</option>
+                {% endfor %}
+            </select>
+
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required readonly>
+
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{name}}" required readonly> 
+
+            <label for="pick_up_place">Pick Up Place:</label>
+            <select id="pick_up_place"  name="pick_up_place" required>
+                {% for i in corp1 %}
+                <option value='{{i.places}}'>{{i.places}}</option>
+                {% endfor %}
+            </select>
+
+            <label for="drop_place">Drop Place:</label>
+            <select id="drop_place"  name="drop_place" required>
+                {% for i in corp1 %}
+                <option value='{{i.places}}'>{{i.places}}</option>
+                {% endfor %}
+            </select>
+            <label for="vehicle_no">Vehicle No:</label>
+            <input type="text" id="vehicle_no" name="vehicle_no" required>
+
+            <label for="photo">Photo</label>
+            <input type="file" name='image' class="custom" accept="image/*" capture="camera" required>
+            
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        var date=document.getElementById('date');
+        let currentDate = new Date().toISOString().split('T')[0];
+           date.value=currentDate;
+    </script>
+</body>
+</html>
